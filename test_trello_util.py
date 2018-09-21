@@ -5,6 +5,7 @@ from trello_util import Trello_Util
 from conf import key,token
 import time
 from data_conf import board_name,list_names,sample_board,sample_cards,member_ids,member_username
+import pickle
 
 def test_trello_util(key,token):
     # Creating an object of Trello Util
@@ -27,33 +28,42 @@ def test_trello_util(key,token):
     else :
         print "Not able to add with name %s"% new_board_name
     
+
     # Add members to board
     result_flag = test_obj.add_member_board(new_board_name,member_ids)
     if result_flag == True:
-        print "Able to add member to board"
+        print "Able to add members %s to board"%member_ids
     else :
-        print "Not able to add member to board"
+        print "Not able to add members %s to board"%member_ids
     
     # Add list (swim lane) to board
     result_flag = test_obj.add_list(new_board_name,list_names)
     if result_flag == True:
-        print "Able to add list"
+        print "Able to add list %s to board name %s"%(list_names,new_board_name)
     else :
-        print "Not able to add list"
+        print "Not able to add list %s to board name %s"%(list_names,new_board_name)
 
     # Copy card to new board from an sample board
     result_flag = test_obj.copy_card(sample_board,sample_cards,new_board_name,"TODO")
     if result_flag == True:
-        print "Able to copy card"
+        print "Able to copy card %s to board %s" %(sample_cards,new_board_name)
     else :
-        print "Not able to copy card"
+        print "Not able to copy card  %s to board %s" %(sample_cards,new_board_name)
     
     # Assign member to copied board
     for card in sample_cards:
-        test_obj.add_member_card(new_board_name,card,member_username)
+        result_flag = test_obj.add_member_card(new_board_name,card,member_username)
+    if result_flag == True:
+        print "Able to add member to copied cards"
+    else :
+        print "Unable to add members to copied card"
     
     # Change preference or visibility (public,private or org )
-    test_obj.change_preferences(new_board_name,"public")
+    result_flag = test_obj.change_preferences(new_board_name,"public")
+    if result_flag == True:
+        print "Able to change preferences"
+    else :
+        print "Unable to change preferences"
     
 
 if __name__ == '__main__':
