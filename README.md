@@ -1,5 +1,5 @@
 --------
-A Python Script using Request module to create Trello Boards Cards 
+A Python Trello API utility Script using Request module to create Trello Boards, Cards etc
 --------
 You can use this script to :
 
@@ -16,6 +16,8 @@ You can use this script to :
 6. Add list items to a board
 
 7. Change preference or visibility
+
+You can refer to blog(https://qxf2.com/blog/python-trello-api-utility-script/) for more details. 
 
 ------
 Setup 
